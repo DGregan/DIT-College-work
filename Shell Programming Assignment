@@ -1,0 +1,106 @@
+#
+# Operating Systems and Systems Administration
+# DT211/2 – Shell Assignment 7
+# ********* | D.Gregan
+# Due date: 1/12/14 at 9:00AM
+#
+
+username_time()
+{
+Now=$(date) # Makes it so the date can be printed by ‘echo’
+echo "Username:"
+whoami
+echo” Today is $now, press a key…” ; read;;
+return
+}
+
+file_editor(yourch)
+{
+echo” Opening file editor” ; vi; echo” Press a key…” ; read ;;
+return
+}
+
+display_list(yourch)
+{
+echo” Displaying ls –l now.” ; ls –l; echo” Press a key…” ; read ;;
+return
+}
+
+shell_home_OS(yourch)
+{
+echo" Current shell:"
+ps -p $$
+echo" Home directory: $HOME"
+echo" OS Type: $(uname -a)"
+return 
+}
+
+path_working_dir(yourch)
+{
+echo "Current working directory: $(pwd)"
+}
+
+show_users(yourch)
+{
+cat /etc/passwd
+}
+
+OS_release_kernel(yourch)
+{
+echo "OS version:" &(cat /proc/version)
+echo "Release number:"
+echo "Kernel version:" &(uname -r)
+}
+
+CPU_name_speed_uptime()
+{
+echo "CPU info: $(cat /proc/cpuinfo)"
+echo" Uptime: $(uptime)"
+}
+
+display_path()
+{
+echo "All directories in PATH:" echo $PATH | tr ':' '\n' 
+}
+
+disk_usage()
+{
+df -h # Displays a table of the disk usage
+}
+
+While:
+Do
+Clear
+Echo” ________________________”
+Echo” Main menu”
+Echo” ________________________”
+Echo” [1] Display username, date and time”
+Echo” [2] Start file editor”
+Echo” [3] Show current shell, home directory and OS type”
+Echo” [4] Show current path setting and current working directory”
+Echo” [5] Show number of users currently logged in”
+Echo” [6] Show OS version, release number and kernel version”
+Echo” [7] Show: CPU info, Processor model name, speed, uptime”
+Echo” [8] Display all directories in PATH”
+Echo” [9] Display info from ‘ls –l’ “
+Echo” [10] Display summary of disk space usage for each directory”
+Echo” [11] Exit program”
+Echo” ________________________”
+Echo –n “Enter your menu choice [1-10]:”
+
+Read yourch
+Case $yourch in
+1) Uname_DateFunc
+2) file_editor
+3) shell_home_OS
+4) path_working_dir
+5) show_users
+6) OS_release_kernel
+7) CPU_name_speed_uptime
+8) display_path
+9) display_list
+10) disk_usage
+11) exit 0;;
+*) echo” Error: Please select choice 1-11”;
+Echo “Press a key to continue. “; read;;
+Esac
