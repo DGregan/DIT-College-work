@@ -1,0 +1,318 @@
+/*
+Programming (C) - Assignment 1 
+Mathematics Quiz Game
+
+- Menu Driven
+- Enter the number Questions to be asked
+- Start quiz
+- Display the number of Questions answered correctly/incorrectly
+- Exit Program gracefully
+
+
+*/
+
+#include <stdio.h>
+#include <conio.h> // for clrscr()
+#include <windows.h> // For Sleep()
+
+// FUNCTION LISTS FOR QUESTIONS
+//Function declartion
+int Question1(int answer_correct, int number_of_q);
+int Question2(int answer_correct, int number_of_q);
+int Question3(int answer_correct, int number_of_q);
+int Question4(int answer_correct, int number_of_q);
+void Question5(int answer_correct, int number_of_q);
+
+int Question1(int answer_correct, int number_of_q)
+{
+    int answer1 =0;
+            // Question 1        
+            printf("\nQuestion 1: 21/3 = ?\n");
+            scanf("%d",&answer1);
+            if (7 == answer1)
+            {
+                printf("\nYou entered: %d - Correct!\n",answer1); 
+                answer_correct == answer_correct++;
+            }//end if Q1
+
+            else
+            {
+                printf("\nYou entered: %d - Wrong! The correct answer: 7\n",answer1);
+            }//end else Q1
+
+    printf ("\nCongratulations! You answered %d out of %d question(s) correctly!",answer_correct,number_of_q);    
+    Sleep(2000);
+    clrscr();  
+    return answer_correct;
+               
+    
+
+} // End of Q1 function
+
+int Question2(int answer_correct, int number_of_q)
+{
+    int answer2 =0;
+
+    // Question 2    
+        printf("\nQuestion 2: 100*2 = ? \n");
+        scanf("%d",&answer2);
+
+        if (200 == answer2)
+
+        {    
+            printf("\nYou entered: %d - Correct!\n",answer2);
+            answer_correct == answer_correct++;
+        }//end if Q2
+
+
+        else
+        {
+            printf("\nYou entered: %d - Wrong! The correct answer: 200\n",answer2);
+        }//end else Q2
+
+
+    printf ("\nCongratulations! You answered %d out of %d question(s) correctly!",answer_correct,number_of_q);
+    Sleep(2000);
+    clrscr();
+    return answer_correct;
+        
+}// end Func Q2
+
+int Question3(int answer_correct, int number_of_q)
+{
+    int answer3 =0;
+            // Question 3
+            printf("\nQuestion 3: (182+124)/2 = ?\n");
+            scanf("%d",&answer3);
+    
+            if (153 == answer3)
+            {
+                printf("\nYou entered: %d - Correct!",answer3);
+                answer_correct == answer_correct++;
+            }//end if Q3
+    
+            else 
+            {
+                printf("\nYou entered: %d - Wrong! The correct answer: 153\n",answer3);
+            }//end else Q3
+    
+    
+    printf ("\nCongratulations! You answered %d out of %d question(s) correctly!",answer_correct,number_of_q);  
+    Sleep(2000);
+    clrscr();
+    return answer_correct;
+} // End Func Q3
+
+int Question4(int answer_correct, int number_of_q)
+{
+    int answer4 =0;
+            //Question 4
+            printf("\nQuestion 4: (40*3+30)/5 = ?\n");
+            scanf("%d",&answer4);
+    
+            if (30 == answer4) // correct answer printf
+            {
+                printf("\nYou entered: %d - Correct!\n",answer4);
+                answer_correct == answer_correct++;
+            }//end if Q4
+    
+    
+            else // worng answer printf
+            {
+                printf("\nYou entered: %d - Wrong! The correct answer: 30\n",answer4);
+            }//end else Q4
+            
+    
+    printf ("\nCongratulations! You answered %d out of %d question(s) correctly!",answer_correct,number_of_q);
+    Sleep(2000);
+    clrscr();
+    return answer_correct;
+}// End of Func !4
+
+void Question5(int answer_correct, int number_of_q)
+{
+            int answer5 =0;
+            //Question 5
+            printf("\nQuestion 5: 747-343 = ?\n");
+            scanf("%d",&answer5);
+
+            if(404 == answer5) // correct answer printf 
+            {
+                printf("\nYou entered: %d - Correct! \n",answer5);
+                answer_correct == answer_correct++;
+            }//end if Q5
+
+
+            else // wrong answer printf 
+            {
+                printf("\nYou entered: %d - Wrong! The correct answer: 404\n",answer5);
+            }//end else Q5
+
+    
+    printf ("\nCongratulations! You answered %d out of %d question(s) correctly!\n\n",answer_correct,number_of_q);
+    Sleep(2000);
+    clrscr();
+}// End of Func for Q5
+
+
+
+
+
+main()
+{
+    // Variable List
+        int num_of_Qs = 0; // Number of questions
+        int anscorrect = 0; // How many questions answered correclty
+        int menu = 0; // Choice of options in the main menu by number
+        int correct_answers = 0;
+    
+    while (true)    
+    {   
+        while (true) // Loops program, when it gets to the end it will come back up here 
+        {
+            
+                printf("\n============================================================\n");
+                printf("\t\t   |Mathematics Quiz!|\n");
+                printf("\t\t..::|| Main Menu ||::..\n");
+                 printf("============================================================\n\n");
+                
+                printf("\t\tPlease chose an option below:\n");
+                
+                printf("============================================================\n");
+                printf("1. How many questions to be asked this round?.(Max of 5)\n");
+                printf("2. Start quiz\n"); 
+                printf("3. Questions answered correctly\n");
+                printf("4. Exit game\n");
+                printf("============================================================\n");
+                
+                
+                scanf("%d",&menu);
+                
+                //menu option 1 - How many Qs this round?
+                if (menu == 1)
+                {
+                    clrscr();
+                    printf("================================================================================\n");
+                    printf("Enter the number of questions to be asked this round of the quiz.(Max of 5\n");
+                    printf("================================================================================\n");
+                    scanf("%d",&num_of_Qs);
+                    
+                    clrscr();
+                    printf("\n");
+                    printf("===============================================================\n");
+                    printf("You have chosen %d question(s) for this round.\n\n",num_of_Qs); 
+                    printf("===============================================================\n");
+                    Sleep(2000);
+                    clrscr();
+                    break; 
+                    
+                }//end if menu 1
+                
+                //menu option 2 - Start the quiz
+                if (menu == 2)
+                {
+                    if (num_of_Qs < 1)
+                    {
+                        printf("================================================\n");
+                        printf("\nReturn to main menu and chose Option 1");
+                        printf("================================================\n");
+                        Sleep(2000);
+                        clrscr();
+                        
+                        break; 
+                        
+                    }   
+                  
+                    
+                    else if (num_of_Qs >0 && num_of_Qs <6)// if num_of_Qs is greater than  but less than 6 the quiz begins
+                    {
+                        clrscr();
+                        printf("==============================================\n");
+                        printf("\tThe quiz will begin now. Good Luck!\n"); 
+                        printf("==============================================\n");
+                        Sleep(2000);
+                        clrscr();
+                    // Question 1 if statement
+                        if (num_of_Qs == 1)
+                        {
+                            Question1(anscorrect, num_of_Qs);
+                        }//end Q1 choice
+                
+                        //Question 2 if statement    
+                        if (num_of_Qs == 2)
+                        {    
+                            correct_answers = Question1(anscorrect, num_of_Qs);
+                            Question2(correct_answers, num_of_Qs);
+                        }
+        
+                        }//end Q2 choice
+                    
+                        //Question 3 if statement    
+                        if (num_of_Qs == 3)
+                        {    
+                            correct_answers = Question1(anscorrect, num_of_Qs);
+                            correct_answers = Question2(correct_answers, num_of_Qs);
+                            Question3(correct_answers, num_of_Qs);
+                            
+                        } // end Q3 choice
+                        
+                        //Question 4 if statement    
+                        if (num_of_Qs == 4)
+                        {        
+                            correct_answers = Question1(anscorrect, num_of_Qs);
+                            correct_answers = Question2(correct_answers, num_of_Qs);
+                            correct_answers = Question3(correct_answers, num_of_Qs);
+                            Question4(correct_answers, num_of_Qs);
+                                
+                        }//end Q4 choice
+                    
+                        //Question 5 if statement
+                        if (num_of_Qs == 5) 
+                        {    
+                            correct_answers = Question1(anscorrect, num_of_Qs);
+                            correct_answers = Question2(correct_answers, num_of_Qs);
+                            correct_answers = Question3(correct_answers, num_of_Qs);
+                            correct_answers = Question4(correct_answers, num_of_Qs);
+                            Question5(correct_answers, num_of_Qs);
+                    
+                        }//end Choice Q5
+                            
+                    
+                
+                }//end if menu 2
+                
+                //menu option 3 - How many Qs answered correctly/incorrectly
+                if (menu == 3)
+                {
+                    clrscr();
+                    printf("===========================================================\n");
+                    printf("You answered %d out of %d question(s) correctly this round!\n",(correct_answers + 1),num_of_Qs);
+                    printf("===========================================================\n");
+                    Sleep(2000);
+                    clrscr();
+                    break;
+                }
+                
+                //menu option 4 - Exit game
+                if (menu == 4)
+                {
+                    clrscr();
+                    printf("=========================\n");
+                    printf("\t**Game Over**.\n");
+                    printf("=========================\n");
+                    
+                    Sleep(2000);
+                    return 0; // Ends the program when it reaches here.
+                }//end if menu 4
+                
+                  // List of Questions
+                
+        
+        }//end while 2
+    }// end While 1
+
+
+    
+           
+
+}//endmain()
