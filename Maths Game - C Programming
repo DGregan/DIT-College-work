@@ -11,6 +11,7 @@ Mathematics Quiz Game
 
 */
 
+
 #include <stdio.h>
 #include <conio.h> // for clrscr()
 #include <windows.h> // For Sleep()
@@ -21,7 +22,7 @@ int Question1(int answer_correct, int number_of_q);
 int Question2(int answer_correct, int number_of_q);
 int Question3(int answer_correct, int number_of_q);
 int Question4(int answer_correct, int number_of_q);
-void Question5(int answer_correct, int number_of_q);
+int Question5(int answer_correct, int number_of_q);
 
 int Question1(int answer_correct, int number_of_q)
 {
@@ -129,7 +130,7 @@ int Question4(int answer_correct, int number_of_q)
     return answer_correct;
 }// End of Func !4
 
-void Question5(int answer_correct, int number_of_q)
+int Question5(int answer_correct, int number_of_q)
 {
             int answer5 =0;
             //Question 5
@@ -152,6 +153,7 @@ void Question5(int answer_correct, int number_of_q)
     printf ("\nCongratulations! You answered %d out of %d question(s) correctly!\n\n",answer_correct,number_of_q);
     Sleep(2000);
     clrscr();
+    return answer_correct;
 }// End of Func for Q5
 
 
@@ -235,14 +237,14 @@ main()
                     // Question 1 if statement
                         if (num_of_Qs == 1)
                         {
-                            Question1(anscorrect, num_of_Qs);
+                            correct_answers = Question1(anscorrect, num_of_Qs);
                         }//end Q1 choice
                 
                         //Question 2 if statement    
                         if (num_of_Qs == 2)
                         {    
                             correct_answers = Question1(anscorrect, num_of_Qs);
-                            Question2(correct_answers, num_of_Qs);
+                            correct_answers = Question2(correct_answers, num_of_Qs);
                         }
         
                         }//end Q2 choice
@@ -252,7 +254,7 @@ main()
                         {    
                             correct_answers = Question1(anscorrect, num_of_Qs);
                             correct_answers = Question2(correct_answers, num_of_Qs);
-                            Question3(correct_answers, num_of_Qs);
+                            correct_answers = Question3(correct_answers, num_of_Qs);
                             
                         } // end Q3 choice
                         
@@ -262,7 +264,7 @@ main()
                             correct_answers = Question1(anscorrect, num_of_Qs);
                             correct_answers = Question2(correct_answers, num_of_Qs);
                             correct_answers = Question3(correct_answers, num_of_Qs);
-                            Question4(correct_answers, num_of_Qs);
+                            correct_answers = Question4(correct_answers, num_of_Qs);
                                 
                         }//end Q4 choice
                     
@@ -273,7 +275,7 @@ main()
                             correct_answers = Question2(correct_answers, num_of_Qs);
                             correct_answers = Question3(correct_answers, num_of_Qs);
                             correct_answers = Question4(correct_answers, num_of_Qs);
-                            Question5(correct_answers, num_of_Qs);
+                            correct_answers = Question5(correct_answers, num_of_Qs);
                     
                         }//end Choice Q5
                             
@@ -286,7 +288,7 @@ main()
                 {
                     clrscr();
                     printf("===========================================================\n");
-                    printf("You answered %d out of %d question(s) correctly this round!\n",(correct_answers + 1),num_of_Qs);
+                    printf("You answered %d out of %d question(s) correctly this round!\n",correct_answers,num_of_Qs);
                     printf("===========================================================\n");
                     Sleep(2000);
                     clrscr();
