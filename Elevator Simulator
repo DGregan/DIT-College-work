@@ -1,0 +1,180 @@
+__author__ = 'D Gregan'
+
+"""
+Object Oriented Programming Assignment | Due date: 3/4/2015 @ 11:59PM
+                          DGregan | C********
+                            Elevator Simulator
+
+* My elevator will be ascend the building one floor at a time
+
+- Task -
+Your task is to implement the simple elevator in Python using classes.
+The default strategy is the simple start at the bottom, go to the top, then go to the bottom".
+You don't have to use this, you can take an alternative approach such as random start location for the elevator.
+
+= What to do =
+
+    - Create three classes: Building, Elevator, and Customer.
+    - Equip  the building with an elevator. Ask user to customize the number of floors and the number of customers.
+    - Program should have error checking to make sure the user inputs are valid. For example, if a user gives non-int
+      inputs, notify the user that the inputs are incorrect and prompt again.
+    - Each customer starts from a random floor, and has a random destination floor.
+    - Each customer will use the elevator only once, i.e., when a customer moves out of the elevator, he/she will never
+      use it again.
+    - When all customers have reached their destination floor, the simulation is finished.
+    - Part of the grade on this assignment will be the appropriateness of your classes, methods, and any functions you
+      use. The quality of the code will now matter as well as the performance.
+    - All classes’ methods require a docstring for a general description of the method.
+    - Don’t use any global variables.
+
+"""
+
+# Randint is used to decide the customers current/destination floor
+from random import randint
+
+
+class Building(object):
+    """
+     A Class called 'Building' containing a group of similar variables and functions which are attributes of Building
+        - This class equips the Elevator to the Building
+        - Assigns the number of floors and customers to the building
+        - Gives the Elevator the ability to move
+    """
+
+    def __init__(self, num_of_floors, customerlist):  # Automatically called when object is created
+        self.max_floors = num_of_floors  # Number of floors in the building
+        self.customersL = customerlist  # List of customers who want to use the lift
+        self.elevator = Elevator(num_floors, customer_list)  # Equips the Elevator to the Building
+        self.elevator.move()  # Gives the elevator the ability to move
+
+
+class Elevator(object):
+    """
+     A Class called 'Elevator' containing a group of similar variables and functions which are attributes of Elevator
+        - def move  is responsible for the lift moving up and down the Building, one floor at a time
+        - Creates a list for people who get into the lift, also removes them once they get off the lift
+        - Dictates the direct on which the lift is going (default set to "up")
+        - Assigns each Customer an 'ID', which is used to show which Customer gets on/off at which floor in the __str__
+        - Prints out each iteration of the 'elevator_update', displaying the current details of the Elevator & Customers
+    """
+
+    # Automatically called when object is created
+    def __init__(self, num_of_floors, customer_list, current_floor=1, lift_state="up"):
+        self.top_floor = num_of_floors  # Number of floors in the building
+        self.customer_list = customer_list  # List of customers who want to use the lift
+        self.in_lift_list = []  # list for people who are in the lift
+        self.cur_floor = current_floor  # Current floor of the lift
+        self.direction_of_lift = lift_state  # Variable for which direction the lift is going
+
+
+    def move(self):
+        """
+        The elevator will start on the ground floor(1) and will go all the way to the top floor (top_floor), picking up/
+        dropping off any customers and then it will move down back to the bottom floor doing the same.
+        """
+        print("\nThe Simulation will now begin.\n")
+        while self.cur_floor != 0:  # While the elevator is not on floor '0'
+            print(self)  # prints the Elevator.__str__
+
+            for customer in self.customer_list:  # For each customer in the Customer list
+                # People getting into the elevator from their current floor
+                if self.cur_floor == customer.cur_floor:
+                    self.in_lift_list.append(customer)  # Adds the customer to the lift
+
+                    customer_list.remove(customer)  # Removes the customer from the list as they are finished
+
+            for customer in self.in_lift_list:
+                # People getting out of the elevator to go to their destination floor
+                if self.cur_floor == customer.dst_floor:
+                    self.in_lift_list.remove(customer)  # Removes the customer from the lift
+
+            # Dictates the direction of the lift - Ascend the building one floor at a time
+            # If the current floor is the top floor, change the direction of the lift and go down 1 floor
+            if self.top_floor == self.cur_floor:
+                self.direction_of_lift = "down"
+
+            # If the lift is going up, go up by one floor
+            if self.direction_of_lift == "up":
+                self.cur_floor += 1
+
+            # If the direction of the lift is going down, then go down by one floor
+            if self.direction_of_lift == "down":
+                self.cur_floor -= 1
+
+        print("\nSimulation Complete.\n")
+
+    def __str__(self):  # Used to show the current floor of the Elevator as it ascends/descends the building
+        self.elevator_update = "Elevator current floor:{}".format(self.cur_floor)
+        return self.elevator_update
+
+
+class Customer(object):
+    """
+    A Class called 'Customer' containing a group of similar variables and functions which are attributes of Customer
+        - Assigns Customers their Current / Destination floors
+        - Includes error checking = If the Customer's current and destination floors are the same, they will be changed.
+
+    """
+
+    def __init__(self, num_of_floors):  # Automatically called when object is created
+        self.floors = num_of_floors
+
+        # Assigning the Customer's current Floor
+        current_floor = randint(1, num_of_floors)
+        self.cur_floor = current_floor
+
+        # Assigning the Customer's destination floor
+        destination_floor = randint(1, num_of_floors)
+        self.dst_floor = destination_floor
+
+        # Error checking for if Customer's floor is == to Customer's destination floor
+        while current_floor == destination_floor:
+            destination_floor = randint(1, num_of_floors)
+        self.dst_floor = destination_floor  # Puts the new destination_floor into self.dst_floor
+
+        print(self)  # prints out 'customer_info' from __str__
+
+    def __str__(self):
+        customerID = 0  # TODO FIX THE CUSTOMER ID COUNTER SO IT RETURNS AT EACH ITERATION OF THE FOR LOOP
+        self.customer_id = customerID
+        for j in range(0, num_customers):
+            self.customer_id += 1
+            customer_info = "Customer {} | Current floor: {} | Destination floor:{}"\
+            .format(self.customer_id, self.cur_floor, self.dst_floor)
+        return customer_info
+
+#  def main():
+
+# User input for number of Customers and Floors
+num_floors = input("How many floors are in the building?\n")
+num_customers = input("How many customers are in the building?\n")
+
+# Error checking for User input for input variable "num_floors"
+# Looks for any string characters, whitespace characters and if the number is less than 0
+if num_floors.isalpha() == True or num_floors.isspace() == True or int(num_floors) <= 0:
+    num_floors = int(input("Please enter a positive digit number for the number of floors in the building.\n"))
+
+else:  # No errors, then the user inputs are converted to int
+    num_floors = int(num_floors)
+
+# Error checking for User input for input variable "num_customers"
+# Looks for any string characters, whitespace characters and if the number is less than 0
+if num_customers.isalpha() == True or num_customers.isspace() == True or int(num_customers) <= 0:
+    num_customers = int(input("Please enter a positive digit number for the number of customers in the building.\n"))
+
+else:  # No errors, then the user inputs are converted to int
+    num_customers = int(num_customers)
+
+customer_list = []  # List to hold the customers who will be using the lift
+
+
+# Creating the list of customers
+for i in range(0, num_customers):
+    aCustomer = Customer(num_floors)  # Creating aCustomer object of the 'Customer' class
+    customer_list.append(aCustomer)
+
+building = Building(num_floors, customer_list)
+
+
+#  if __name__ == "__main__":
+#    main()
